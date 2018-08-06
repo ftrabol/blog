@@ -1,0 +1,28 @@
+<p id="notice"><%= flash[:notice] %></p>
+ 
+<h1>Lstado de héroes</h1>
+ 
+<table border="1">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Powers</th>
+    <th colspan='2'>opciones</th>
+  </tr>
+  </thead>
+ 
+  <tbody>
+  <% @hero.each do |hero| %>
+      <tr>
+        <td><%= hero.name %></td>
+        <td><%= hero.powers %></td>
+        <td><%= link_to 'Destroy', { :action => :destroy, :name => hero.name }, :method => :delete, :data => { :confirm => '¿Está seguro?' } %></td>
+        <td><%= link_to 'Edit', :action => :edit, :id => hero.id %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br>
+ 
+<%= link_to 'Añadir un nuevo héroe', hero_new_path %>
