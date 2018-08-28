@@ -1,0 +1,30 @@
+<% #inspeccionamos el objeto hero %>
+<%= @hero.inspect %>
+
+<% # abrimos el tag del formulario hero %>
+<%= form_for @hero, url: hero_create_path do |f| %>
+    <% if @hero.errors.any? %><!-- si existen errores los mostramos-->
+        <div id="error_explanation">
+          <h2><%= pluralize(@hero.errors.count, 'error') %> no permiten que el héroe sea guardado:</h2>
+
+          <ul>
+            <% @hero.errors.full_messages.each do |message| %>
+                <li><%= message %></li><!-- mensaje errores -->
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <!-- pintamos el formulario de héroes -->
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :powers %><br>
+      <%= f.text_area :powers %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
